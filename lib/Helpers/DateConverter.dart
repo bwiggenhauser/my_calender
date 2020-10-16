@@ -1,10 +1,16 @@
 String dateToString(DateTime date) {
-  int year = date.year;
-  int month = date.month;
-  int day = date.day;
+  String year = date.year.toString();
+  String month = date.month.toString();
+  String day = date.day.toString();
+
+  if (month.length < 2) {
+    month = '0' + month.toString();
+  }
   return '$day.$month.$year';
 }
 
+// hier fehlt die erste null beim monat
+// TODO: FIXEN
 String intToString(int number) {
   String asString = number.toString();
   int year = int.parse(asString[0] + asString[1] + asString[2] + asString[3]);
