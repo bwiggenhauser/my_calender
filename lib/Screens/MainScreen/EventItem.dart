@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_calender/constants.dart';
 
-class Event extends StatelessWidget {
-  final int timeStamp;
+class EventItem extends StatelessWidget {
+  final String timeStamp;
   final String eventName;
 
-  const Event({Key key, @required this.timeStamp, @required this.eventName})
+  const EventItem({Key key, @required this.timeStamp, @required this.eventName})
       : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class Event extends StatelessWidget {
             spacing: false,
           ),
           TextProvider(
-            textContent: timeStamp.toString(),
+            textContent: timeStamp,
             textColor: TEXT_COLOR3_DARK_2,
             textSize: 15,
             bold: false,

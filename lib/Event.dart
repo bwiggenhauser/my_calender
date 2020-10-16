@@ -1,7 +1,7 @@
 class Event {
-  final int id;
-  final String name;
-  final int date;
+  int id;
+  String name;
+  int date;
 
   Event({this.id, this.name, this.date});
 
@@ -9,10 +9,9 @@ class Event {
     return {'id': id, 'name': name, 'date': date};
   }
 
-  fromMap(Map<String, dynamic> map) {
-    int myID = map['id'];
-    String myName = map['name'];
-    int myDate = map['date'];
-    print('$myID, $myName, $myDate');
+  Event.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    name = map['name'];
+    date = map['date'];
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_calender/Database/Database.dart';
-import 'package:my_calender/Event.dart';
+import 'package:my_calender/Database/database_helper.dart';
 import 'package:my_calender/Helpers/DateConverter.dart';
-import 'package:sqflite/sqflite.dart';
 import '../../constants.dart';
 
 class EventAddContainer extends StatefulWidget {
@@ -12,6 +10,7 @@ class EventAddContainer extends StatefulWidget {
 
 class _EventAddContainerState extends State<EventAddContainer> {
   DateTime selectedDate = DateTime.now();
+  String selectedName;
   var dbHelper;
   @override
   Widget build(BuildContext context) {
@@ -35,6 +34,11 @@ class _EventAddContainerState extends State<EventAddContainer> {
       child: Column(
         children: [
           TextField(
+            onChanged: (value) {
+              setState(() {
+                selectedName = value;
+              });
+            },
             maxLength: 40,
             decoration: InputDecoration(
               labelText: "Event Name",
@@ -96,12 +100,12 @@ class _EventAddContainerState extends State<EventAddContainer> {
                 ),
                 color: MAIN_COLOR_1,
                 onPressed: () async {
-                  dbHelper = DBHelper();
-                  Event e =
-                      Event(id: 0, name: "My first event", date: 20201012);
-                  await dbHelper.insertEvent(e);
-                  var x = dbHelper.events();
-                  print(x);
+                  int i = await DatabaseHelper.instance.insert({
+                    DatabaseHelper.columnName: selectedName,
+                    DatabaseHelper.columnDate:
+                        stringToDateInt(toFinalString(selectedDate))
+                  });
+                  print('The inserted id is $i');
                 },
                 child: TextProvider(
                   bold: true,
