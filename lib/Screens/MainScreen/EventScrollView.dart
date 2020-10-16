@@ -38,9 +38,11 @@ class _EventScrollViewState extends State<EventScrollView> {
     if (events != null) {
       for (int i = 0; i < events.length; i++) {
         setState(() {
-          myEvents.add(EventItem(
-              timeStamp: events[i]['date'].toString(),
-              eventName: events[i]['name']));
+          myEvents.add(
+            EventItem(
+                timeStamp: events[i]['date'].toString(),
+                eventName: events[i]['name']),
+          );
         });
       }
     }

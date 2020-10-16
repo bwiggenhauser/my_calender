@@ -55,7 +55,7 @@ class _EventAddContainerState extends State<EventAddContainer> {
                     bold: true,
                     spacing: false,
                     textColor: TEXT_COLOR3_DARK_1,
-                    textContent: toFinalString(selectedDate),
+                    textContent: dateToString(selectedDate),
                     textSize: 20,
                   ),
                 ),
@@ -103,7 +103,7 @@ class _EventAddContainerState extends State<EventAddContainer> {
                   int i = await DatabaseHelper.instance.insert({
                     DatabaseHelper.columnName: selectedName,
                     DatabaseHelper.columnDate:
-                        stringToDateInt(toFinalString(selectedDate))
+                        stringToInt(dateToString(selectedDate))
                   });
                   print('The inserted id is $i');
                 },
